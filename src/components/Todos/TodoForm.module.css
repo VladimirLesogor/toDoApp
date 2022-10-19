@@ -1,0 +1,23 @@
+.form{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.input{
+    width: 40%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid lightblue;
+    font-size: 35px;
+    padding: 3px;
+    margin: 15px;
+}
+
+.button{
+    height: 50px;
+    border-radius: 10px;
+    font-size: 35px;
+    padding: 3px;
+    margin: 15px;
+}
