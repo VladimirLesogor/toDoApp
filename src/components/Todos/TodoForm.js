@@ -4,23 +4,24 @@ import style from './TodoForm.module.css';
 function TodoForm({ addTodo }) {
   const [text, setText] = useState('');
 
+  function onSubmitHandler(event) {
+    event.preventDefault();
+    addTodo(text, true);
+    setText('');
+  }
+
   return (
-    <div className={style.form}>
+    <form className={style.form}>
       <input
         className={style.input}
         placeholder="Input text here"
-        valuse={text}
+        value={text}
         onChange={(e) => setText(e.target.value)}
       ></input>
-      <button
-        className={style.button}
-        onClick={() => {
-          addTodo(text);
-        }}
-      >
+      <button type="submit" className={style.button} onClick={onSubmitHandler}>
         Add Todo
       </button>
-    </div>
+    </form>
   );
 }
 export default TodoForm;

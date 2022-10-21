@@ -5,8 +5,17 @@ import TodoList from './components/Todos/TodoList';
 
 function App() {
   const [todoArrey, setTodoArrey] = useState([]);
-  const addTodo = (newTodo) => {
-    newTodo && setTodoArrey([...todoArrey, newTodo]);
+  class TodoObj {
+    constructor(text, isActive) {
+      this.text = text;
+      this.isActive = isActive;
+    }
+  }
+
+  
+
+  const addTodo = (text, isActive) => {
+    text && setTodoArrey([...todoArrey, new TodoObj(text, isActive)]);
   };
   const removeTodo = (index) => {
     const newArr = todoArrey;
@@ -14,11 +23,23 @@ function App() {
     setTodoArrey([...newArr]);
   };
 
+  const changeStatusHandler = function (index, isActive) {
+    const newArr = todoArrey;
+    const currentTodo = newArr[index];
+    currentTodo.isActive = isActive;
+    newArr.splice(index, 1, currentTodo);
+    setTodoArrey([...newArr]);
+  };
+
   return (
     <div className="App">
       <h1>Todo App</h1>
       <TodoForm addTodo={addTodo} />
-      <TodoList todoArrey={todoArrey} removeTodo={removeTodo} />
+      <TodoList
+        todoArrey={todoArrey}
+        removeTodo={removeTodo}
+        changeStatus={changeStatusHandler}
+      />
     </div>
   );
 }
